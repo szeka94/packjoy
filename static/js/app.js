@@ -1,5 +1,6 @@
 angular.module('app', [
 	'ui.router',
+	'ngResource',
 	'app.controllers',
 	'app.services',
 ])

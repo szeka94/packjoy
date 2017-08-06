@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular-resource": "^1.6.5",
     "angular-ui-router": "^1.0.3"
   }
 }
