@@ -1,7 +1,6 @@
 angular.module('app.controllers', [])
 
 .controller('HomeCtrl', ['$scope', 'Products', 'Email', HomeCtrl])
-
 .controller('ProductsCtrl', function($scope) {
 	$scope.products = [1, 2, 3, 4]
 })
@@ -10,13 +9,17 @@ angular.module('app.controllers', [])
 	$scope.products = [1, 2, 3, 4]
 })
 
-.controller('ProductDetailsCtrl', function($scope) {
-	$scope.products = [1, 2, 3, 4]
-});
+.controller('ProductDetailsCtrl', ['$scope', 'Products', 'product', ProductDetailsCtrl]);
 
+
+
+
+
+// CTRL functions
 function HomeCtrl($scope, Products, Email) {
 	
-	$scope.products = Products.getProducts();
+	$scope.products = Products.query();
+
 
 	$scope.joinEmailList = function(email) {
 		if(email === undefined) {
@@ -34,4 +37,10 @@ function HomeCtrl($scope, Products, Email) {
 		$scope.customer = {};
 	};
 
-}
+};
+
+
+function ProductDetailsCtrl($scope, Products, product) {
+	console.log(product);
+	$scope.product = product;
+};

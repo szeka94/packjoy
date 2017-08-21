@@ -6,4 +6,4 @@ import wtforms_json
 wtforms_json.init()
 
 class EmailForm(FlaskForm):
-    email = StringField('name', validators=[DataRequired(), Email()])
+    email = StringField('email', validators=[DataRequired(), Email()])

@@ -3,14 +3,15 @@ angular.module('app', [
 	'ngResource',
 	'app.controllers',
 	'app.services',
+	'app.constants'
 ])
 
-.run(function($state) {
-	// Doesn't seems like working
-	$state.go('home');
-})
+// .run(function($state) {
+// 	// Doesn't seems like working
+// 	$state.go('home');
+// })
 
-.config(function($stateProvider, $locationProvider, $urlRouterProvider) {
+.config(['$qProvider', '$stateProvider', '$locationProvider', '$urlRouterProvider', function($qProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
 	// This is a bug fix for the new 1.6
 	// angular js. Url encoding issue
 	$locationProvider.hashPrefix('');
@@ -34,9 +35,15 @@ angular.module('app', [
 		.state('productDetails', {
 			url: "/:prodSlug",
 			templateUrl: '../static/partials/product-details.html',
-			controller: 'ProductDetailsCtrl'
+			controller: 'ProductDetailsCtrl',
+			resolve: {
+				product: function($stateParams, Products) {
+					console.log($stateParams.prodSlug);
+					return Products.get({ slug: $stateParams.prodSlug });
+				}
+			}
 		});
 
 	$urlRouterProvider.otherwise('/');
 
-});
+}]);
