@@ -1,5 +1,8 @@
 angular.module('app', [
+	'ngAnimate',
+	'ngTouch',
 	'ui.router',
+	'ui.bootstrap',
 	'ngResource',
 	'app.controllers',
 	'app.services',

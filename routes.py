@@ -14,8 +14,8 @@ def adding_email_address():
 			newsletter_subs = Email(email=form.data['email'])
 			db.session.add(newsletter_subs)
 			db.session.commit()
-			return jsonify({ 'message' : 'Working properly!' }), 200
-		return jsonify({ 'message': 'This email has already joined.' })
+			return jsonify({ 'message' : '10% discount in your inbox. Use this email address at checkout!' }), 200
+		return jsonify({ 'message': 'This email has already joined.' }), 400
 	return jsonify({ 'message' : form.errors }), 400
 
 
@@ -23,5 +23,4 @@ def adding_email_address():
 @app.route('/api/products/<slug>')
 def get_products(slug=None):
 	data = get_prods_by_slug(slug)
-	print(data)
 	return jsonify(data)

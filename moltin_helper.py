@@ -3,7 +3,7 @@ from packjoy.app import m
 product = m.Product
 
 # A freeeeaking helper 
-# to get an index, 
+# to get an index of a list, 
 # or handle exception
 def get_list_index(list, di, default):
 	try:
@@ -18,5 +18,9 @@ def get_list_index(list, di, default):
 def get_prods_by_slug(slug):
 	if slug is None:
 		return product.list()
-	data = m.get('products/?slug={}'.format(slug))
+	try:
+		data = m.get('products/?slug={}'.format(slug))
+	except RequestError as e:
+		data = e
+	print(data)
 	return get_list_index(data, 0, None)
