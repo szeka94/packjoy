@@ -24,6 +24,9 @@ import packjoy.admin
 def index():
     return render_template('index.html')
 
+@app.route('/amp/')
+def amp_index():
+	return render_template('index-amp.html')
 
 import packjoy.routes
 

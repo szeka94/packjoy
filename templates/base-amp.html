@@ -1,0 +1,176 @@
+<!doctype html>
+<html amp lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title>Welcome at Ejoy</title>
+    <link rel="canonical" href="{{ url_for('index') }}">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "headline": "Open-source framework for publishing content",
+        "datePublished": "2015-10-07T12:02:41Z",
+        "image": [
+          "logo.jpg"
+        ]
+      }
+    </script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <style amp-custom>
+        body {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #eeeeee;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        amp-img {
+            display: block;
+        }
+        p {
+            font-size:0.9em;
+            color: #333;
+
+        }
+        .wrapper {
+            width: 90%;
+            left: 5%;
+            right: 5:5;
+            height: 2000px;
+            position: absolute;
+            display: block;
+            margin-top: 0px;
+            background-color: #ffffff;
+        }
+        main {
+            display: block;
+        }
+        .w100p { width: 100%; }
+        .navbar {
+            border-bottom: 1px solid #eee;
+            float: left;
+        }
+        .container {
+            position: relative;
+            width: 90%;
+            margin: 0px auto;
+            margin-top: 120px;
+        }
+        .navbar-header {
+            padding: 15px;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+        .nav {
+            float: right;
+            margin-top: 11px;
+            display: inline-block;
+        }
+        ul.nav li {
+            display: inline-block;
+        }
+        ul.nav li a {
+            color: #777;
+            display: inline-block;
+            padding: 10px 10px;
+            text-decoration: none;
+            font-size: 1.0em;
+        }
+        {% block desktop_css %}
+        {% endblock desktop_css %}
+
+        @media only screen and (max-width: 600px) {
+            /* utils go here */
+            .mobile-center {
+                margin: 0px auto;
+                text-align: center;
+            }
+            .mobile-center img {
+                margin: 0px auto;
+                text-align: center;
+            }
+            .wrapper {
+                width: 100%;
+                left: 0;
+                right: 0;
+            }
+            .remove-margin { margin: 0px; }
+            /* end of utils */
+            ul.nav {
+                display: block;
+                width: 100%;
+                background-color: #ffffff;
+            }
+            ul.nav li {
+                display: block;
+                width: 100%;
+                border-bottom: 1px solid #eee;
+            }
+            ul.nav li a {
+                display: block;
+            }
+            .navbar {
+                border: none;
+            }
+            {% block mobile_css %}
+            {% endblock mobile_css %}
+        }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+        <nav class="w100p navbar" role="navigation">
+            <div class="navbar-header mobile-center">
+                <a class="navbar-brand" href="url_for('amp_index')">
+                    <amp-img src="{{ url_for('static', filename='img/logo@2x.jpg') }}" width="160" height="69" layout="fixed" alt="Ejoy - Shop Online">
+                    </amp-img>
+                </a>
+                <ul class="nav mobile-center remove-margin">
+                    <li>
+                        <a href="#">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Contact Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Cart
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main>
+            <section>
+                <div class="container">
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="w100p">
+                <p>Copyright &copy; Ejoy.com</p>
+            </div>
+        </footer>
+    </div>
+  </body>
+</html>
