@@ -1,5 +1,41 @@
 {% extends "base-amp.html" %}
 
+{% block add_scripts %}
+<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+{% endblock add_scripts %}
+
+<style type="text/css">
+{% block desktop_css %}
+	.carousel {
+		background-color: #c0e9f9;
+		margin: 20px auto;
+	}
+{% endblock desktop_css %}
+</style>
+
+
 {% block content %}
-<h1>Index Page!</h1>
+<div class="w100p">
+	<div class="carousel w80p mx-height-900">
+		<amp-carousel height="383" layout="fixed-height" type="slides">
+			<!-- <amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img>
+			<amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img>
+			<amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img> -->
+			<div class="w100p" style="border: 1px dotted red;">
+				<h2>This is the carousel</h2>
+			</div>
+			<div class="w100p" style="border: 1px dotted red;">
+				<h2>whisch isn't implemented</h2>
+			</div>
+			<div class="w100p" style="border: 1px dotted red;">
+				<h2>yet</h2>
+			</div>
+		</amp-carousel>
+	</div>
+	<!-- isn't working this shit -->
+	<h1>Latest Products</h1>
+	<hr />
+</div>
+
+
 {% endblock content %}

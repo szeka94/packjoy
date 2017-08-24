@@ -2,7 +2,9 @@
 <html amp lang="en">
   <head>
     <meta charset="utf-8">
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script src="https://cdn.ampproject.org/v0.js" async></script>
+    {% block add_scripts %}
+    {% endblock add_scripts %}
     <title>Welcome at Ejoy</title>
     <link rel="canonical" href="{{ url_for('index') }}">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
@@ -39,31 +41,45 @@
         p {
             font-size:0.9em;
             color: #333;
-
+        }
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 0;
+            border: 1px solid #eee; 
         }
         .wrapper {
-            width: 90%;
-            left: 5%;
-            right: 5:5;
-            height: 2000px;
-            position: absolute;
+            max-width: 1200px;
+            width: 95%;
+            height: auto;
             display: block;
-            margin-top: 0px;
+            margin: 0px auto;
             background-color: #ffffff;
+        }
+        .center {
+            margin: 0px auto;
         }
         main {
             display: block;
+            clear: left;
         }
-        .w100p { width: 100%; }
+        .w100p { 
+            width: 100%;
+            overflow: auto;
+        }
+        .w80p { width: 80%; }
+        .mx-height-900 { max-height: 900px; }
         .navbar {
             border-bottom: 1px solid #eee;
             float: left;
+        }
+        .navbar-brand {
+            display: inline-block;
         }
         .container {
             position: relative;
             width: 90%;
             margin: 0px auto;
-            margin-top: 120px;
         }
         .navbar-header {
             padding: 15px;
@@ -98,6 +114,7 @@
                 margin: 0px auto;
                 text-align: center;
             }
+            .w80p { width: 100% ; }
             .wrapper {
                 width: 100%;
                 left: 0;
@@ -132,6 +149,7 @@
             <div class="navbar-header mobile-center">
                 <a class="navbar-brand" href="url_for('amp_index')">
                     <amp-img src="{{ url_for('static', filename='img/logo@2x.jpg') }}" width="160" height="69" layout="fixed" alt="Ejoy - Shop Online">
+                        <noscript>It seems like your browser doesn't support JS. Download Chrome.</noscript>
                     </amp-img>
                 </a>
                 <ul class="nav mobile-center remove-margin">
