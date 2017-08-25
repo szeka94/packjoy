@@ -7,21 +7,32 @@
 <style type="text/css">
 {% block desktop_css %}
 	.carousel {
+		width: 100%;
+		max-width: 900px;
 		background-color: #c0e9f9;
 		margin: 20px auto;
 	}
+	.slide {
+
+	}
 {% endblock desktop_css %}
+</style>
+
+<style type="text/css">
+{% block mobile_css %}
+{% endblock mobile_css %}
 </style>
 
 
 {% block content %}
 <div class="w100p">
-	<div class="carousel w80p mx-height-900">
-		<amp-carousel height="383" layout="fixed-height" type="slides">
+	<div class="carousel">
+		<amp-carousel height="260" layout="fixed-height" type="slides">
+			<div placeholder class="placeholder-color"></div>
 			<!-- <amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img>
 			<amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img>
 			<amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img> -->
-			<div class="w100p" style="border: 1px dotted red;">
+			<div class="slide">
 				<h2>This is the carousel</h2>
 			</div>
 			<div class="w100p" style="border: 1px dotted red;">
@@ -36,6 +47,4 @@
 	<h1>Latest Products</h1>
 	<hr />
 </div>
-
-
 {% endblock content %}

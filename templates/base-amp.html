@@ -34,13 +34,13 @@
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
             box-sizing: border-box;
+            color: #777;
         }
         amp-img {
             display: block;
         }
         p {
             font-size:0.9em;
-            color: #333;
         }
         hr {
             margin-top: 20px;
@@ -68,7 +68,6 @@
             overflow: auto;
         }
         .w80p { width: 80%; }
-        .mx-height-900 { max-height: 900px; }
         .navbar {
             border-bottom: 1px solid #eee;
             float: left;
@@ -89,7 +88,7 @@
         .nav {
             float: right;
             margin-top: 11px;
-            display: inline-block;
+            display: inline-block;  
         }
         ul.nav li {
             display: inline-block;
@@ -101,6 +100,7 @@
             text-decoration: none;
             font-size: 1.0em;
         }
+        .placeholder-color { background-color: #cecece; }
         {% block desktop_css %}
         {% endblock desktop_css %}
 
@@ -149,6 +149,7 @@
             <div class="navbar-header mobile-center">
                 <a class="navbar-brand" href="url_for('amp_index')">
                     <amp-img src="{{ url_for('static', filename='img/logo@2x.jpg') }}" width="160" height="69" layout="fixed" alt="Ejoy - Shop Online">
+                        <div placeholder class="placeholder-color"></div>
                         <noscript>It seems like your browser doesn't support JS. Download Chrome.</noscript>
                     </amp-img>
                 </a>
