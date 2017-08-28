@@ -8,6 +8,14 @@ from flask_migrate import Migrate
 app = Flask(__name__)
 app.config.from_object('packjoy.config.Development')
 
+# Custom templating helper
+# filters, renderers
+def get_resource_as_string(name, charset='utf-8'):
+    with app.open_resource(name) as f:
+        return f.read().decode(charset)
+
+app.jinja_env.globals['get_resource_as_string'] = get_resource_as_string
+
 
 # Moove somewhere else
 m = Moltin(app.config['MOLTIN_CLIENT_ID'], app.config['MOLTIN_CLIENT_SECRET'])
