@@ -1,6 +1,33 @@
-h1 {
-	color: red;
-}
-p {
-	display: inline-block;
+@import 'mixins';
+@import 'variables';
+
+.carousel {
+	.jumbotron {
+		margin: 2em;
+		background-color: white;
+		opacity: 0.8;
+		height: 200px;
+		h2 {
+			padding-top: 1vw;
+			font-size: 26px;
+			color: #000001;
+			text-shadow: 2px;
+			text-align: center;
+		}
+		p {
+			font-size: 16px;
+			color: #000001;
+			padding: 1.5vw;
+		}
+	}
+	.slide1{
+		@include add-fixed-bg('../static/img/join_email_list_bg.jpg');
+	}
+	.slide2{
+		@include add-fixed-bg('../static/img/out_of_box_prods.jpg');
+	}
+	.slide3{
+		background-color: $primary-color;
+		@include add-fixed-bg('../static/img/free_shipping_bg.png');
+	}
 }

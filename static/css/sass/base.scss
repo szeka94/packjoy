@@ -21,6 +21,8 @@ hr {
 .wrapper {
     width: 100%;
     display: grid;
+    max-width: 550px;
+    margin: 0px auto;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     height: auto;
@@ -50,8 +52,10 @@ nav {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
         align-items: center;
+        margin-bottom: 30px;
         li {
             border-bottom: 1px solid $secondary-color;
+            list-style: none;
             a {
                 color: $primary-color;
                 display: block;
@@ -78,6 +82,12 @@ nav {
             grid-column: 1;
             grid-row: 4;
         }
+    }
+}
+footer {
+    padding: 20px;
+    p {
+        font-size: 0.9em; 
     }
 }
 

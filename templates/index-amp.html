@@ -2,6 +2,8 @@
 
 {% block add_scripts %}
 <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
 {% endblock add_scripts %}
 
 <style type="text/css">
@@ -18,14 +20,45 @@
 			<!-- <amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img>
 			<amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img>
 			<amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img> -->
-			<div class="slide">
-				<h2>This is the carousel</h2>
+			<div class="slide1">
+				<div class="jumbotron">
+					<h2>Get 10% Off</h2>
+					<p>Join Our newsletter list and get 10% discount on your next order. Keep in Touch!</p>
+					<form method="post" action-xhr="/api/email" target="_top" credentials="include" custom-validation-reporting="show-all-on-submit">
+						<div class="ampstart-input inline-block relative m0 p0 mb3">
+							<input type="email" id="show-all-on-submit-email" name="email" placeholder="YourEmail@Address.com" required />
+							<span visible-when-invalid="valueMissing"
+							validation-for="show-all-on-submit-email"></span>
+							<span visible-when-invalid="typeMismatch"
+							validation-for="show-all-on-submit-email"></span>
+							<input type="submit" value="Subscribe" class="ampstart-btn caps" />
+						</div>
+						<div submit-success>
+							<template type="amp-mustache">
+								{{message}}
+							</template>
+						</div>
+						<div submit-error>
+							<template type="amp-mustache">
+								Error! {{message}}
+							</template>
+						</div>
+					</form>
+				</div>
 			</div>
-			<div class="w100p" style="border: 1px dotted red;">
-				<h2>whisch isn't implemented</h2>
+			<div class="slide2">
+				<div class="jumbotron">
+					<h2>Out of box products!</h2>
+					<p>
+						Our products provide <i>Out of Box</i> solutions for everyday life. Check it out Now.
+					</p>
+				</div>
 			</div>
-			<div class="w100p" style="border: 1px dotted red;">
-				<h2>yet</h2>
+			<div class="slide3">
+				<div class="jumbotron">
+					<h2>Free Shipping on orders > 60RON.</h2>
+					<p>Order for 60RON or more and get free shipping.</p>
+				</div>
 			</div>
 		</amp-carousel>
 	</div>

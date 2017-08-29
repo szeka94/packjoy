@@ -7,3 +7,14 @@
 @mixin for-desktop-up {
   @media (min-width: 1200px) { @content; }
 }
+
+
+@mixin add-fixed-bg($bg-image) {
+	background-image: url($bg-image);
+	background-position: left center;
+	// background-attachment: fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
