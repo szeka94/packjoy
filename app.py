@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from moltin.moltin import Moltin
@@ -28,13 +28,27 @@ migrate = Migrate(app, db)
 admin = Admin(app, name='packjoy', template_mode='bootstrap3')
 import packjoy.admin
 
+
+@app.after_request
+def apply_cors_to_amp_cache(response):
+    response.headers["Access-Control-Allow-Origin"] = '*.ampproject.org'
+    response.headers["Access-Control-Allow-Origin"] = '*.amp.cloudflare.com'
+    source_origin = request.args.get('__amp_source_origin', '')
+    if source_origin:
+        response.headers["AMP-Access-Control-Allow-Source-Origin"] = source_origin
+    response.headers["Access-Control-Expose-Headers"] = 'Access-Control-Expose-Headers'
+    return response
+
+
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route('/amp/')
 def amp_index():
-	return render_template('index-amp.html')
+    return render_template('index-amp.html')
 
 import packjoy.routes
 
