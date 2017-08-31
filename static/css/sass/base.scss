@@ -29,6 +29,8 @@ hr {
     background-color: #ffffff;
 }
 
+.placeholder-color { background-color: $third-color; }
+
 nav {
     grid-column: 1;
     grid-row: 1;
@@ -146,7 +148,6 @@ footer {
     //     }
     // }
 // }
-// .placeholder-color { background-color: $third-color; }
 
 // /* utils go here */
 // .mobile-center {

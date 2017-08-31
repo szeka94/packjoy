@@ -22,7 +22,7 @@
 			<amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img> -->
 			<div class="slide1">
 				<div class="jumbotron">
-					<h2>Get 10% Off</h2>
+					<h5>Get 10% Off</h5>
 					<p>Join Our newsletter list and get 10% discount on your next order. Keep in Touch!</p>
 					<form method="post" action-xhr="/api/email" target="_top" credentials="include" custom-validation-reporting="show-all-on-submit">
 						<div class="ampstart-input inline-block relative m0 p0 mb3">
@@ -35,12 +35,12 @@
 						</div>
 						<div submit-success>
 							<template type="amp-mustache">
-								{{message}}
+								<span>{% raw %}{{message}}{% endraw %}</span>
 							</template>
 						</div>
 						<div submit-error>
 							<template type="amp-mustache">
-								Error! {{message}}
+								<span>{% raw %}{{message}}{% endraw %}</span>
 							</template>
 						</div>
 					</form>
@@ -48,7 +48,7 @@
 			</div>
 			<div class="slide2">
 				<div class="jumbotron">
-					<h2>Out of box products!</h2>
+					<h5>Out of box products!</h5>
 					<p>
 						Our products provide <i>Out of Box</i> solutions for everyday life. Check it out Now.
 					</p>
@@ -56,7 +56,7 @@
 			</div>
 			<div class="slide3">
 				<div class="jumbotron">
-					<h2>Free Shipping on orders > 60RON.</h2>
+					<h5>Free Shipping on orders > 60RON.</h5>
 					<p>Order for 60RON or more and get free shipping.</p>
 				</div>
 			</div>
@@ -65,5 +65,22 @@
 	<!-- isn't working this shit -->
 	<h1>Latest Products</h1>
 	<hr />
+	<div class="prod-renderer-wraper">
+		{% for product in products %}
+		<div class="prod-box">
+			<a href="http://google.com/">
+				<amp-img src="{{ product.image }}" width="854" height="480" alt="{{ product.name }}" layout="responsive">
+                    <div placeholder class="placeholder-color"></div>
+				</amp-img>
+			</a>
+			<div class="prod-attr">
+				<h3>{{ product.title }} <small>Since: {{ product.created_at }}</small></h3>
+				<p>{{ product.description }}</p>
+				<p><a class="btn btn-submit" href="#">Buy Now</a></p>
+				<p><a class="btn btn-positive" href="#">View Details</a></p>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
 </div>
 {% endblock content %}

@@ -3,7 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from moltin.moltin import Moltin
 from flask_migrate import Migrate
+from packjoy import app
+import pprint
 
+pp = pprint.PrettyPrinter(indent=2)
 
 app = Flask(__name__)
 app.config.from_object('packjoy.config.Development')
@@ -20,7 +23,6 @@ app.jinja_env.globals['get_resource_as_string'] = get_resource_as_string
 # Moove somewhere else
 m = Moltin(app.config['MOLTIN_CLIENT_ID'], app.config['MOLTIN_CLIENT_SECRET'])
 access_token = m.authenticate()
-
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -39,16 +41,6 @@ def apply_cors_to_amp_cache(response):
     response.headers["Access-Control-Expose-Headers"] = 'Access-Control-Expose-Headers'
     return response
 
-
-
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/amp/')
-def amp_index():
-    return render_template('index-amp.html')
 
 import packjoy.routes
 
