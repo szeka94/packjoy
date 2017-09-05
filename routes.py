@@ -36,6 +36,21 @@ def amp_index():
     products = get_prods_by_slug(slug=None)
     return render_template('index-amp.html', products=products)
 
+@app.route('/amp/products')
+def products():
+    products = get_prods_by_slug(slug=None)
+    return render_template('products-page-amp.html')
+
+@app.route('/amp/contact-us')
+def contact_us():
+    products = get_prods_by_slug(slug=None)
+    return render_template('contact-us-page-amp.html')
+
+@app.route('/amp/checkout')
+def checkout():
+    products = get_prods_by_slug(slug=None)
+    return render_template('checkout-page-amp.html')
+
 @app.route('/amp/<brand>')
 def amp_brand_page(brand):
     products = brand
@@ -44,11 +59,11 @@ def amp_brand_page(brand):
 @app.route('/amp/<brand>/<product>')
 def amp_product_page(brand, product):
     prod = get_prods_by_slug(product)
+    brand_slug = prod.brand['slug']
     if prod is None:
         # There is no such a prduct
         # raise a 404 Error
         abort(404) 
-    brand_slug = prod.brand['slug']
     if brand_slug != brand:
         return redirect(url_for('amp_product_page', brand=prod.brand['slug'], product=prod.slug))
     return render_template('product-page-amp.html', product=prod)
