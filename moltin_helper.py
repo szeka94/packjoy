@@ -22,8 +22,11 @@ def get_prods_by_slug(slug):
 		prod_list = product.list()
 		# Should ADD TO MODEL ONE BY ONE
 		# USE dict comprehension maybe
-		pp.pprint(p for p in prod_list)
-		return prod_list
+		print(type(prod_list))
+		print(type(prod_list[0]))
+		data = [Product(prod_list[i]) for i in range(0,4)]
+		pp.pprint(data)
+		return data
 	try:
 		data = m.get('products/?slug={}'.format(slug))
 	except RequestError as e:

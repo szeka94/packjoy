@@ -17,9 +17,6 @@
 	<div class="carousel">
 		<amp-carousel height="260" layout="fixed-height" type="slides">
 			<div placeholder class="placeholder-color"></div>
-			<!-- <amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img>
-			<amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img>
-			<amp-img src="{{ url_for('static', filename='img/bg.jpg') }}" height="383" layout="fixed-height" alt="a sample image"></amp-img> -->
 			<div class="slide1">
 				<div class="jumbotron">
 					<h5>Get 10% Off</h5>
@@ -69,15 +66,17 @@
 		{% for product in products %}
 		<div class="prod-box">
 			<a href="http://google.com/">
-				<amp-img src="{{ product.image }}" width="854" height="480" alt="{{ product.name }}" layout="responsive">
+				<amp-img src="{{ product.images[0] }}" width="854" height="480" alt="{{ product.name }}" layout="responsive">
                     <div placeholder class="placeholder-color"></div>
 				</amp-img>
 			</a>
 			<div class="prod-attr">
-				<h3>{{ product.title }} <small>Since: {{ product.created_at }}</small></h3>
+				<h3>{{ product.title }}</h3>
 				<p>{{ product.description }}</p>
-				<p><a class="btn btn-submit" href="#">Buy Now</a></p>
-				<p><a class="btn btn-positive" href="#">View Details</a></p>
+				<p>
+					<a class="btn btn-submit" href="{{ url_for('amp_product_page', brand=product['brand']['slug'], product=product['slug']) }}">Buy Now</a>
+					<a class="btn btn-positive btn-right" href="{{ url_for('amp_product_page', brand=product['brand']['slug'], product=product['slug']) }}">View Details</a>
+				</p>
 			</div>
 		</div>
 		{% endfor %}

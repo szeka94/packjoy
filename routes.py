@@ -2,7 +2,8 @@ from packjoy.app import app, db, pp
 from packjoy.models import Email
 from packjoy.forms import EmailForm
 from packjoy.moltin_helper import get_prods_by_slug
-from flask import jsonify, request, render_template
+from flask import jsonify, request, render_template, redirect, url_for
+from flask import abort
 
 
 @app.route('/api/email', methods=['POST'])
@@ -34,3 +35,20 @@ def index():
 def amp_index():
     products = get_prods_by_slug(slug=None)
     return render_template('index-amp.html', products=products)
+
+@app.route('/amp/<brand>')
+def amp_brand_page(brand):
+    products = brand
+    return render_template('brand-page-amp.html', products=products)
+
+@app.route('/amp/<brand>/<product>')
+def amp_product_page(brand, product):
+    prod = get_prods_by_slug(product)
+    if prod is None:
+        # There is no such a prduct
+        # raise a 404 Error
+        abort(404) 
+    brand_slug = prod.brand['slug']
+    if brand_slug != brand:
+        return redirect(url_for('amp_product_page', brand=prod.brand['slug'], product=prod.slug))
+    return render_template('product-page-amp.html', product=prod)

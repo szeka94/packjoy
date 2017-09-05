@@ -16,7 +16,6 @@ class Email(db.Model):
 
 class Product(object):
 	def __init__(self, data):
-		# pp.pprint(data)
 		self.created_at = data['created_at']
 		self.description = data['description']
 		self.id = data['id']
@@ -38,4 +37,6 @@ class Product(object):
 			return 'Low Stock'
 		else: 
 			return 'In stock'
-		
+
+	def __repr__(self):
+		return '<{} Product>'.format(self.title)
