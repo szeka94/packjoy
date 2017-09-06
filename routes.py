@@ -1,7 +1,7 @@
 from packjoy.app import app, db, pp
 from packjoy.models import Email
 from packjoy.forms import EmailForm
-from packjoy.moltin_helper import get_prods_by_slug
+from packjoy.moltin_helper import get_prods_by_slug, get_brand_by_slug
 from flask import jsonify, request, render_template, redirect, url_for
 from flask import abort
 
@@ -39,7 +39,7 @@ def amp_index():
 @app.route('/amp/products')
 def products():
     products = get_prods_by_slug(slug=None)
-    return render_template('products-page-amp.html')
+    return render_template('products-page-amp.html', products=products)
 
 @app.route('/amp/contact-us')
 def contact_us():
@@ -53,8 +53,12 @@ def checkout():
 
 @app.route('/amp/<brand>')
 def amp_brand_page(brand):
-    products = brand
-    return render_template('brand-page-amp.html', products=products)
+    brand = get_brand_by_slug(brand)
+    if brand is None:
+        # There is No Such a Brand
+        # Abort 404
+        return redirect(url_for('amp_index'))
+    return render_template('brand-page-amp.html', brand=brand)
 
 @app.route('/amp/<brand>/<product>')
 def amp_product_page(brand, product):

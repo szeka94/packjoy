@@ -1,5 +1,6 @@
 import uuid 
 from packjoy.app import db, pp
+from flask import url_for
 
 # This needs to be moved somewhere else
 class Email(db.Model):
@@ -27,6 +28,7 @@ class Product(object):
 		self.brand = {
 			'title': data['brand']['data']['title'],
 			'slug': data['brand']['data']['slug'],
+			'description': data['brand']['data']['description'],
 		}
 		self.category = [data['category']['data'][cat_id] for cat_id in data['category']['data']]
 
@@ -40,3 +42,15 @@ class Product(object):
 
 	def __repr__(self):
 		return '<{} Product>'.format(self.title)
+
+
+class Brand(object):
+	def __init__(self, products=None):
+		self.products = products
+		self.title = self.products[0].brand['title']
+		self.slug = self.products[0].brand['slug']
+		self.description = self.products[0].brand['description']
+		self.banner = url_for('static', filename='img/{}.jpg'.format(self.title))
+
+	def __repr__(self):
+		return '<{} Brand>'.format(self.title)

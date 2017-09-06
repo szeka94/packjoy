@@ -1,5 +1,7 @@
 from packjoy.app import m, pp
-from packjoy.models import Product
+from packjoy.models import Product, Brand
+from moltin.exception import RequestError
+
 
 product = m.Product
 
@@ -22,10 +24,7 @@ def get_prods_by_slug(slug):
 		prod_list = product.list()
 		# Should ADD TO MODEL ONE BY ONE
 		# USE dict comprehension maybe
-		print(type(prod_list))
-		print(type(prod_list[0]))
 		data = [Product(prod_list[i]) for i in range(0,4)]
-		pp.pprint(data)
 		return data
 	try:
 		data = m.get('products/?slug={}'.format(slug))
@@ -36,3 +35,15 @@ def get_prods_by_slug(slug):
 		return Product(prod)
 	else: 
 		return None
+
+# Gives back a brand object (model)
+# or None
+def get_brand_by_slug(brand_slug):
+	# Test this
+	data = product.list()
+	data = [prod for prod in data if prod['brand']['data']['slug'] == brand_slug]
+	if len(data) == 0 or data is None:
+		return None
+	prod_list = [Product(prod) for prod in data]
+	brand = Brand(products=prod_list)
+	return brand
