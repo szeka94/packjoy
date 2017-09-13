@@ -40,11 +40,21 @@
 	grid-template-columns: 1fr;
 	grid-template-rows: auto;
 	grid-gap: 35px;
+	@include for-tablet-up {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto;
+	}
 	.prod-box {
         grid-column: 1;
         justify-self: center;
         width: 80%;
         border: 1px solid $third-color;
+        @include for-tablet-up {
+        	width: 100%;
+        	&:nth-child(even) {
+        		grid-column: 2;
+        	}
+        }
         .prod-attr {
         	margin-top: 10px;
         	padding: 2vw;
@@ -63,6 +73,21 @@
 	        		right: 0px;
 	        		top: 3px;
 	        		font-size: 0.75em;
+	        	}
+	        	@include for-tablet-up {
+	        		display: grid;
+	        		grid-template-columns: 1fr;
+	        		span {
+	        			grid-row: 1;
+	        			text-align: left;
+	        			width: 100%;
+	        		}
+	        		i {
+	        			grid-row: 2;
+	        			text-align: right;
+	        			width: 100%;
+	        			position: inherit;
+	        		}
 	        	}
         	}
         	.btn {

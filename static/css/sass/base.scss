@@ -5,6 +5,9 @@
 body {
     font-family: $font-stack;
     background-color: $secondary-color;
+    @include for-tablet-up {
+        background-color: #ffffff;
+    }
 }
 amp-img {
     display: block;
@@ -30,6 +33,7 @@ hr {
     @include for-tablet-up {
         max-width: none; 
         width: 95%;
+        max-width: 900px;
     }
 }
 
@@ -42,7 +46,9 @@ nav {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     @include for-tablet-up {
-        grid-template-columns: 2fr 3fr
+        // max-width: 678px;
+        justify-self: center;
+        grid-template-columns: 1fr 2fr
     }
     .navbar-brand {
         grid-column: 1;
@@ -125,9 +131,34 @@ nav {
     }
 }
 footer {
-    padding: 20px;
+    margin-top: 20px;
     p {
-        font-size: 0.9em; 
+        font-size: 0.9em;
+    }
+    .free-shipping {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 1.0em;
+        padding: 8px 0px;
+        text-align: center;
+        background-color: #000000;
+        font-style: italic;
+    }
+    .join-newsletter {
+        display: inline-block;
+        padding: 10px;
+        background-color: #eee;
+        position: relative;
+        width: 100%;
+        h3 {
+            text-align: center;
+        }
+        form {
+            display: block;
+            margin: 0px auto;
+            float: none;
+            text-align: center;
+        }
     }
 }
 
