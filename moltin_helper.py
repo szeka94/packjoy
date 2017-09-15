@@ -24,12 +24,24 @@ def get_prods_by_slug(slug):
 		prod_list = product.list()
 		# Should ADD TO MODEL ONE BY ONE
 		# USE dict comprehension maybe
-		data = [Product(prod_list[i]) for i in range(0,4)]
+		try:
+			data = [Product(prod_list[i]) for i in range(0,4)]
+		except:
+			print('############# ERROR #############')
+			print('############# ERROR #############')
+			print('############# ERROR #############')
+			pp.pprint(data)
+			print('############# ERROR #############')
+			print('############# ERROR #############')
+			print('############# ERROR #############')
+			return None
 		return data
 	try:
 		data = m.get('products/?slug={}'.format(slug))
 	except RequestError as e:
 		data = e
+	except:
+		print(m.get('products/?slug={}'.format(slug)))
 	prod = get_list_index(data, 0, None)
 	if prod:
 		return Product(prod)

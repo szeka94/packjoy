@@ -38,7 +38,11 @@ hr {
 }
 
 .placeholder-color { background-color: $third-color; }
-
+.btn {
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+}
 nav {
     grid-column: 1;
     grid-row: 1;
@@ -159,6 +163,9 @@ footer {
             float: none;
             text-align: center;
         }
+    }
+    .copy-right { 
+        margin-bottom: 20px;
     }
 }
 

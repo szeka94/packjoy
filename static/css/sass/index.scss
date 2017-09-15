@@ -90,15 +90,10 @@
 	        		}
 	        	}
         	}
-        	.btn {
-        		padding: 10px 20px;
-        		color: #ffffff;
-       			text-decoration: none;
-        	}
         	.btn-submit {
-        		background-color: #355c7d;
+        		background-color: $blue-color;
         		&:hover {
-        			background-color: #294963;
+        			background-color: $blue-color-hover;
         			color: #cccccc;
         		}
         	}

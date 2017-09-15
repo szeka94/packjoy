@@ -1,6 +1,8 @@
 {% extends "base-amp.html" %}
 
 {% block add_scripts %}
+<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+<script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
 {% endblock add_scripts %}
 
 <style type="text/css">
@@ -10,7 +12,119 @@
 </style>
 
 {% block content %}
-<div class="w100p">
-	<h3>{{ products }}</h3>
+<div class="w80p">
+	<h1>{{ product.title }}</h1>
+	<p class="link-bar">
+		<a href="{{ url_for('amp_index') }}">
+			Home
+		</a>/
+		<a href="{{ url_for('amp_brand_page', brand=product.brand['slug']) }}">
+			{{ product.brand['title'] }}
+		</a>/
+		<a href="{{ url_for('amp_product_page', brand=product.brand['slug'], product=product.slug) }}">
+			{{ product.title }}
+		</a>
+	</p>
+	<div class="social-media">
+		<ul>
+			<li>
+				<a href="https://fb.com/" target="_blank">
+					<amp-img
+						src="{{ url_for('static', filename='img/fb_logo_325x325.png') }}"
+						width="20"
+						height="20"
+						layout="fixed"
+						alt="Facebook">
+					</amp-img>
+				</a>
+			</li>
+			<li>
+				<a href="https://pinterest.com/" target="_blank">
+					<amp-img
+						src="{{ url_for('static', filename='img/pinterest_logo_500x500.jpg') }}"
+						width="20"
+						height="20"
+						layout="fixed"
+						alt="Pinterest">
+					</amp-img>
+				</a>
+			</li>
+			<li>
+				<a href="https://www.instagram.com/" target="_blank">
+					<amp-img
+						src="{{ url_for('static', filename='img/instagram_logo_1455x1455.png') }}"
+						width="20"
+						height="20"
+						layout="fixed"
+						alt="Instagram">
+					</amp-img>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<amp-carousel id="carousel-with-carousel-preview"
+		width="400"
+		height="300"
+		layout="responsive"
+		type="slides">
+		{% for img in product.images %}
+			<amp-img src="{{ img }}"
+		width="1280"
+		height="720"
+		layout="responsive"
+		alt="a sample image">
+            <div placeholder class="placeholder-color"></div>
+		</amp-img>
+		{% endfor %}
+	</amp-carousel>
+	<div class="product-attr-container">
+		<div class="product-specs">
+			<amp-selector role="tablist"
+				layout="container"
+				class="ampTabContainer">
+				<div role="tab"
+					class="tabButton"
+					selected
+					option="a">
+					Details
+				</div>
+				<div role="tabpanel"
+				class="tabContent">
+					<p>
+						{% if product.apply_discount is defined and product.apply_discount %}
+							<span style="text-decoration: line-through;">{{ product.price_original }}</span> - {{ product.price }}
+						{% else %}
+						{{ product.price }}
+						{% endif %}
+					</p>
+					<p>{{ product.get_stock_status() }}</p>
+				</div>
+				<div role="tab"
+				class="tabButton"
+				option="b">
+					Description
+				</div>
+				<div role="tabpanel"
+				class="tabContent">
+					<p>
+						{{ product.description }}
+					</p>
+				</div>
+				<div role="tab"
+				class="tabButton"
+				option="c">
+					Reviews
+				</div>
+				<div role="tabpanel"
+				class="tabContent">
+					Not Implemented yet!
+				</div>
+			</amp-selector>
+			
+
+
+
+		</div>
+	</div>
 </div>
 {% endblock content %}
