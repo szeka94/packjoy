@@ -11,7 +11,7 @@ product = m.Product
 def get_list_index(list, di, default):
 	try:
 		return list[di]
-	except IndexError:
+	except:
 		return default
 
 
@@ -21,7 +21,14 @@ def get_list_index(list, di, default):
 # based on slug
 def get_prods_by_slug(slug):
 	if slug is None:
-		prod_list = product.list()
+		try:
+			prod_list = product.list()
+		except TypeError as e:
+			print(e)
+			print(product.list())
+		except RequestError as e:
+			return None
+
 		# Should ADD TO MODEL ONE BY ONE
 		# USE dict comprehension maybe
 		try:
@@ -37,11 +44,12 @@ def get_prods_by_slug(slug):
 			return None
 		return data
 	try:
-		data = m.get('products/?slug={}'.format(slug))
+		data = m.get('products/?slug={}'.format(slug))				
 	except RequestError as e:
 		data = e
+		print('Request Error: {}'.format(e))
 	except:
-		print(m.get('products/?slug={}'.format(slug)))
+		print(m.get('products/?slug={}'.format(slug))+'asdasdsa')
 	prod = get_list_index(data, 0, None)
 	if prod:
 		return Product(prod)

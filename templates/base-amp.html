@@ -9,7 +9,11 @@
     {% endblock add_scripts %}
     <title>Welcome at Ejoy</title>
     <link rel="canonical" href="{{ url_for('index') }}">
+    {% block css_additional %}
+    {% endblock css_additional %}
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    {% block meta_data %}
+    {% endblock meta_data %}
     <script type="application/ld+json">
       {
         "@context": "http://schema.org",
@@ -70,12 +74,32 @@
         </main>
         <footer>
             <p class="free-shipping">Free Shipping over 60RON order.</p>
-            <div class="join-newsletter">
+            <div class="disclaimer">
                 <h3>Join Newsletter Now and <wbr /><i>Get 10% discount</i></h3>
                 {% include 'partials/newsletter_join.html' %}
+                <div class="social-icons">
+                    <a href="https://fb.com" target="_blank">
+                        <amp-img src="{{ url_for('static', filename='img/fb_logo_325x325.png') }}" width="40" height="40" layout="fixed" alt="Ejoy - Shop Online">
+                            <div placeholder class="placeholder-color"></div>
+                            <noscript>It seems like your browser doesn't support JS. Download Chrome.</noscript>
+                        </amp-img>
+                    </a>
+                    <a href="https://instagram.com" target="_blank">
+                        <amp-img src="{{ url_for('static', filename='img/instagram_logo_1455x1455.png') }}" width="40" height="40" layout="fixed" alt="Ejoy - Shop Online">
+                            <div placeholder class="placeholder-color"></div>
+                            <noscript>It seems like your browser doesn't support JS. Download Chrome.</noscript>
+                        </amp-img>
+                    </a>
+                    <a href="https://pinterest.com" target="_blank">
+                        <amp-img src="{{ url_for('static', filename='img/pinterest_logo_500x500.jpg') }}" width="40" height="40" layout="fixed" alt="Ejoy - Shop Online">
+                            <div placeholder class="placeholder-color"></div>
+                            <noscript>It seems like your browser doesn't support JS. Download Chrome.</noscript>
+                        </amp-img>
+                    </a>
+                </div>
             </div>
             <hr />
-            <p class="copy-right">Copyright &copy; Ejoy.com</p>
+            <p class="copy-right">Copyright &copy; Ejoy.gz</p>
         </footer>
     </div>
   </body>

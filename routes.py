@@ -26,6 +26,10 @@ def get_products(slug=None):
     data = get_prods_by_slug(slug)
     return jsonify(data)
 
+@app.route('/api/product/add_to_cart', methods=['POST'])
+def add_to_cart():
+    print(request.form['prod_id'])
+    return jsonify({ 'message': 'Product added' })
 
 @app.route('/')
 def index():
@@ -63,11 +67,12 @@ def amp_brand_page(brand):
 @app.route('/amp/<brand>/<product>')
 def amp_product_page(brand, product):
     prod = get_prods_by_slug(product)
-    brand_slug = prod.brand['slug']
     if prod is None:
         # There is no such a prduct
         # raise a 404 Error
         abort(404) 
+    brand_slug = prod.brand['slug']
+    brand_obj = get_brand_by_slug(brand)
     if brand_slug != brand:
         return redirect(url_for('amp_product_page', brand=prod.brand['slug'], product=prod.slug))
-    return render_template('product-page-amp.html', product=prod)
+    return render_template('product-page-amp.html', product=prod, brand=brand_obj)
